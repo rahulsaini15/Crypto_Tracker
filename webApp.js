@@ -13,13 +13,14 @@ form.addEventListener('submit',(e)=>{
     getPrice(ctype);
 })
 const getPrice=async(ctype)=>{
+    const options = {method: 'GET', headers: {accept: 'application/json','X-API-KEY': 'cTBv6aBWKBpHvh12tV7Wta0WMCjCEv833AnbsBywsD4='}};
     //axois to fetch data from server through  api 
-    const details=await axios.get(`https://api.coinstats.app/public/v1/coins/${ctype}?currency=USD`);
+    const details=await axios.get(`https://openapiv1.coinstats.app/coins/${ctype}?currency=USD`,options);
     // console.log(details);
-    const price=details.data.coin.price;
-    const volume=details.data.coin.volume;
-    const change=details.data.coin.priceChange1d;
-    const base=details.data.coin.name;
+    const price=details.data.price;
+    const volume=details.data.volume;
+    const change=details.data.priceChange1d;
+    const base=details.data.name;
     // console.log(base);
     const target='USD';
     var color="green";
